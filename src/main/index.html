@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Course Feedback System</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Hintergrund -->
+  <div class="app-bg">
+    <!-- Hauptcontainer -->
+    <div class="app-container">
+
+      <!-- LOGO + Titel -->
+      <header class="app-header">
+        <div class="logo">CF</div>
+        <div class="title-group">
+          <h1>Course Feedback System</h1>
+          <p class="subtitle">Simple demo based on your design</p>
+        </div>
+      </header>
+
+      <!-- LOGIN / SIGNUP VIEW -->
+      <main id="auth-view" class="view active">
+        <div class="card">
+          <h2>Login</h2>
+          <form id="login-form">
+            <label>
+              Email
+              <input type="email" id="login-email" required />
+            </label>
+            <label>
+              Password
+              <input type="password" id="login-password" required />
+            </label>
+            <button type="submit" class="btn primary">Log In</button>
+          </form>
+
+          <div class="divider">or</div>
+
+          <button id="show-signup" class="btn secondary">
+            Create new account
+          </button>
+        </div>
+
+        <div class="card hidden" id="signup-card">
+          <h2>Create Account</h2>
+          <form id="signup-form">
+            <div class="grid-2">
+              <label>
+                First Name
+                <input type="text" id="signup-firstname" required />
+              </label>
+              <label>
+                Last Name
+                <input type="text" id="signup-lastname" required />
+              </label>
+            </div>
+            <label>
+              Email
+              <input type="email" id="signup-email" required />
+            </label>
+            <label>
+              Password
+              <input type="password" id="signup-password" required />
+            </label>
+
+            <button type="submit" class="btn primary">Create Account</button>
+            <button type="button" id="back-to-login" class="btn text">
+              Back to Login
+            </button>
+          </form>
+        </div>
+      </main>
+
+      <!-- COURSES VIEW -->
+      <main id="courses-view" class="view">
+        <div class="toolbar">
+          <h2>My Courses</h2>
+          <div class="toolbar-right">
+            <select id="course-sort">
+              <option value="name-asc">Name (A → Z)</option>
+              <option value="name-desc">Name (Z → A)</option>
+              <option value="sessions-asc">Sessions (few → many)</option>
+              <option value="sessions-desc">Sessions (many → few)</option>
+            </select>
+            <button id="btn-new-course" class="btn primary">Create Course</button>
+            <button id="btn-logout" class="btn text">Log out</button>
+          </div>
+        </div>
+
+        <div id="course-list" class="card-list empty-message">
+          <!-- Kurse werden per JS eingefügt -->
+          <p>No courses yet. Click “Create Course”.</p>
+        </div>
+      </main>
+
+      <!-- SESSIONS VIEW -->
+      <main id="sessions-view" class="view">
+        <div class="toolbar">
+          <div>
+            <button id="back-to-courses" class="btn text">← Back to Courses</button>
+            <h2 id="sessions-course-name">Sessions</h2>
+          </div>
+          <button id="btn-new-session" class="btn primary">Create Session</button>
+        </div>
+
+        <div id="session-list" class="card-list empty-message">
+          <p>No sessions yet. Click “Create Session”.</p>
+        </div>
+      </main>
+
+      <!-- PREVIEW / LIVE / ANALYTICS VIEW -->
+      <main id="live-view" class="view">
+        <div class="toolbar">
+          <button id="back-to-sessions" class="btn text">← Back to Sessions</button>
+          <h2 id="live-session-name">Session</h2>
+          <button id="btn-close-session" class="btn secondary">Close Session</button>
+        </div>
+
+        <section class="card" id="feedback-form-card">
+          <h3>Preview / Evaluation Form</h3>
+          <form id="feedback-form">
+            <label>
+              Overall rating (1–5)
+              <input type="number" min="1" max="5" id="fb-rating" required />
+            </label>
+            <label>
+              Comment
+              <textarea id="fb-comment" rows="3"></textarea>
+            </label>
+            <button type="submit" class="btn primary">Send feedback</button>
+          </form>
+        </section>
+
+        <section class="card" id="live-results-card">
+          <h3>Live Results / Analytics (simple demo)</h3>
+          <p>
+            Average rating: <span id="avg-rating">–</span><br />
+            Number of responses: <span id="response-count">0</span>
+          </p>
+          <ul id="comment-list" class="simple-list"></ul>
+        </section>
+      </main>
+
+      <!-- MODALS -->
+      <!-- Course Modal -->
+      <div id="course-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content card">
+          <h3>Create Course</h3>
+          <form id="course-form">
+            <label>
+              Course Name
+              <input type="text" id="course-name" required />
+            </label>
+            <label>
+              Course Code
+              <input type="text" id="course-code" required />
+            </label>
+            <label>
+              Description (optional)
+              <textarea id="course-description" rows="2"></textarea>
+            </label>
+            <div class="modal-actions">
+              <button type="button" class="btn text" data-close-modal>Cancel</button>
+              <button type="submit" class="btn primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Session Modal -->
+      <div id="session-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content card">
+          <h3>Create Session</h3>
+          <form id="session-form">
+            <label>
+              Session Name
+              <input type="text" id="session-name" required />
+            </label>
+            <label>
+              Week (optional)
+              <input type="number" id="session-week" min="1" />
+            </label>
+            <label>
+              Question (simple text question)
+              <input type="text" id="session-question" />
+            </label>
+            <div class="modal-actions">
+              <button type="button" class="btn text" data-close-modal>Cancel</button>
+              <button type="submit" class="btn primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* styles/sessions.css */
+
+.sessions-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.session-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.session-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.session-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+}
+
+.session-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.session-week {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.session-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-badge.active {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+}
+
+.status-badge.closed {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger-color);
+}
+
+.session-stats {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.session-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.session-actions .btn {
+    font-size: 13px;
+    padding: 8px 16px;
+}
+
+.session-actions .btn span {
+    font-size: 16px;
+}
+
+/* Session Sort Controls */
+.session-sort {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.session-sort label {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.session-sort select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Analytics Header Info */
+.analytics-header-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.session-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.last-update {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.analytics-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .session-card-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .session-actions {
+        width: 100%;
+    }
+    
+    .session-actions .btn {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .analytics-header-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .analytics-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
